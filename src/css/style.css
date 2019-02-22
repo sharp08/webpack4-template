@@ -1,0 +1,8 @@
+.hello {    
+    background: url('../images/icon2.jpg') no-repeat;
+    background-size: contain;
+    font-size: 50px;    
+}
+img{
+    height:100px;
+}
