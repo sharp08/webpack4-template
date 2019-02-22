@@ -1,8 +1,15 @@
-.hello {    
+.env {
+    color: red;
+}
+
+.bg {
+    display: inline-block;
+    height: 50px;
+    width:50px;
     background: url('../images/icon2.jpg') no-repeat;
     background-size: contain;
-    font-size: 50px;    
 }
-img{
-    height:100px;
+
+img {
+    height: 100px;
 }

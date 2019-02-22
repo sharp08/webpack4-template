@@ -4,9 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "serve": "webpack-dev-server --config conf/webpack.common.js --open --progress",
-    "dev": "webpack --config conf/webpack.common.js --watch --progress",
-    "build": "webpack --config conf/webpack.common.js --progress",
+    "serve": "webpack-dev-server --config conf/webpack.dev.js --progress",
+    "build": "webpack --config conf/webpack.prod.js --progress",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -27,10 +26,13 @@
     "webpack": "^4.29.4",
     "webpack-bundle-analyzer": "^3.0.4",
     "webpack-cli": "^3.2.3",
-    "webpack-dev-server": "^3.1.14"
+    "webpack-dev-server": "^3.1.14",
+    "webpack-merge": "^4.2.1"
   },
   "dependencies": {
+    "@babel/polyfill": "^7.2.5",
     "@babel/runtime": "^7.3.1",
+    "lodash": "^4.17.11",
     "lodash-es": "^4.17.11"
   }
 }

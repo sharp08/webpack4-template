@@ -1,26 +1,29 @@
-const path = require("path")
-const CleanWebpackPlugin = require("clean-webpack-plugin")
-const HtmlWebpackPlugin = require("html-webpack-plugin")
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const path = require("path")            //  路径插件
+const webpack = require("webpack")
+const CleanWebpackPlugin = require("clean-webpack-plugin")      //  用于清空指定文件夹
+const HtmlWebpackPlugin = require("html-webpack-plugin")        //  生成模板 index.html
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;   //  打包分析插件
 
-function resolve(p) {
-    return path.resolve(__dirname, p)
+
+function resolve(src) {
+    return path.resolve(__dirname, src)
 }
 
 module.exports = {
-    // mode: "development",
     entry: {
         app: resolve('../src/index.js'),
-        print: resolve('../src/js/print.js')
+        // print: resolve('../src/js/print.js')
     },
     output: {
         filename: "[name].bundle.js",
         chunkFilename: '[name].chunk.[chunkhash].js',
         path: resolve("../dist"),
+        // library: "myModule",     //  打包后暴露出的名字
+        // libraryTarget: "umd"     //  按照 umd 规范打包，即同时支持 CommonJS，AMD，CMD，ES6 和 全局引用
     },
     devServer: {
-        // contentBase: resolve("../abc"),  //  如果需要启动一个外部项目，这里是目录地址，默认启动 abc/index.html
-        index: 'entry.html',    //  这里与 HtmlWebpackPlugin 中 filename 对应
+        // contentBase: resolve("../other-project"),  //  如果需要启动一个外部项目，这里是目录地址，默认启动 abc/index.html，需要关闭 html-webpack-plugin 插件
+        // index: 'index.html',    //  这里与 HtmlWebpackPlugin 中 filename 对应，默认入口页
         port: 10240,
         overlay: true
     },
@@ -54,19 +57,24 @@ module.exports = {
         splitChunks: {
             chunks: 'all'
         },
+        minimize: false     //  打包时不压缩代码
     },
     plugins: [
         new BundleAnalyzerPlugin({
             analyzerHost: '127.0.0.1',
-            analyzerPort: 12031
+            analyzerPort: 12031,
+            openAnalyzer: false
         }),
         new HtmlWebpackPlugin({
             title: "测试 html-webpack-plugin",
-            filename: "entry.html", //  打包后输出的文件名
-            template: resolve('../template.html')
+            filename: "index.html", //  打包后输出的文件名
+            template: resolve('../template.html')   //  打包参照的模板，不配置这一项就自动生成
         }),
         new CleanWebpackPlugin(['dist'], {
             root: resolve('../')
-        })
+        }),
+        // new webpack.ProvidePlugin({
+        //     _join: "lodash-es/join"     //  treeshaking 写法,开发生产都有效
+        // })
     ]
 }
