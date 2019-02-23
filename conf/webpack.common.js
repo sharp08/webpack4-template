@@ -63,7 +63,7 @@ module.exports = {
         splitChunks: {
             chunks: 'all'
         },
-        minimize: false     //  打包时不压缩代码
+        // minimize: false     //  打包时不压缩代码
     },
     plugins: [
         new BundleAnalyzerPlugin({
