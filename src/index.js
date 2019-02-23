@@ -1,6 +1,6 @@
 import './css/style.css'
 import icon1 from "./images/icon1.jpg"
-import printMe from "./js/print.js"
+import printMe from "@js/print.js"
 // import { chunk } from "lodash-es"
 //  由于 treeshaking 这里只导入 chunk，则 production 模式下只打包该方法
 
@@ -18,7 +18,7 @@ function init() {
     const img_bg = document.querySelector(".img_bg span");
     img_bg.className = "bg"
 
-    //  
+    //  懒加载
     const lazy_load = document.querySelector("button");
     lazy_load.onclick = printMe
 }

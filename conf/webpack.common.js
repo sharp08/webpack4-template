@@ -18,7 +18,7 @@ module.exports = {
         filename: "[name].bundle.js",
         chunkFilename: '[name].chunk.[chunkhash].js',
         path: resolve("../dist"),
-        // library: "myModule",     //  打包后暴露出的名字
+        // library: "myModule",     //  打包后暴露出的名字  window.myModule
         // libraryTarget: "umd"     //  按照 umd 规范打包，即同时支持 CommonJS，AMD，CMD，ES6 和 全局引用
     },
     devServer: {
@@ -51,6 +51,12 @@ module.exports = {
                 loader: "babel-loader"
             }
         ]
+    },
+    resolve: {
+        alias: {
+            "@js": resolve("../src/js")     //  别名
+        },
+        // extensions: ['js']       //  可省略扩展名
     },
     optimization: {
         //  用于提取公共部分，形成 chunk
