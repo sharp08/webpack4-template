@@ -56,7 +56,7 @@ module.exports = {
         alias: {
             "@js": resolve("../src/js")     //  别名
         },
-        // extensions: ['js']       //  可省略扩展名
+        // extensions: ['.js']       //  可省略扩展名
     },
     optimization: {
         //  用于提取公共部分，形成 chunk
